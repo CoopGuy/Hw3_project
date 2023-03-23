@@ -1,4 +1,5 @@
 #include "Deck.h"
+#include <exception>
 #include <random>
 #include <time.h>
 #include <sstream>
