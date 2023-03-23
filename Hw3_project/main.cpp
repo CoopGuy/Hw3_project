@@ -6,21 +6,16 @@
 #include <iostream>
 #include <string>
 
-
-
-
-
-
-
-
-
-
-
-
+int CompareResult(Player& p1, Player& p2)
+{
+	if (p1.GetCachedSum() > p2.GetCachedSum())return 0;
+	if (p1.GetCachedSum() < p2.GetCachedSum())return 1;
+	return -1;
+}
 
 int main()
 {
-	Player Human, Computer;
+	Player Human(Player::type::user), Computer(Player::type::ai);
 	while (Human.HasCards() && Computer.HasCards())
 	{
 		Human.DoActions();
@@ -29,18 +24,20 @@ int main()
 		// winner is 0 if human wins 1 if computer wins and -1 if tie
 		int winner = CompareResult(Human, Computer); 
 
-		// human wins
-		if (winner == 0) Human.GiveCardsFromPlayer(Computer);
-
-		// computer wins
-		else if (winner == 1) Computer.GiveCardsFromPlayer(Human);
-
-		// tie
-		else 
+		switch (winner)
 		{
+		case 1: // human wins
+			Human.GiveCardsFromPlayer(Computer);
+			break;
+		case 2: // computer wins
+			Computer.GiveCardsFromPlayer(Human);
+			break;
+		default: // tie
 			Human.ReturnCachedCards();
 			Computer.ReturnCachedCards();
+			break;
 		}
+
 	}
 
 	std::string winner = Human.HasCards() ? "human" : "computer";
