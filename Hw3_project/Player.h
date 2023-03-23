@@ -15,10 +15,9 @@ private:
 	Card* cache[2]{ nullptr };
 
 public:
-	
 	Player(type pType = ai) : PlayerType(pType) {};
 	void DoActions();
-	bool HasCards() { return MainDeck.Size() > 0 || Stash.Size() > 0 };
+	bool HasCards() { return MainDeck.Size() > 0 || Stash.Size() > 0; };
 	void GiveCardsFromPlayer(Player &p);
 	void ReturnCachedCards();
 	int GetCachedSum();

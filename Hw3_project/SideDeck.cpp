@@ -21,9 +21,9 @@ Card* SideDeck::Rem()
 		ss << "SideDeck: No cards to remove\nFile: " << __FILE__ << "\nLine: " << __LINE__ << "\n";
 		throw std::runtime_error(ss.str());
 	}
-	count--;
 	Card* res = Stack[count-1];
 	Stack[count - 1] = nullptr;
+	count--;
 	return res;
 }
 

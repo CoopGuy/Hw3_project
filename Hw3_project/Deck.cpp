@@ -14,8 +14,6 @@ Deck::Deck()
 			Add(new Card(value, (Card::suits)suit));
 		}
 	}
-	srand(time(NULL));
-
 	if( count <=0 )
 	{
 		std::stringstream ss;
@@ -24,32 +22,28 @@ Deck::Deck()
 	}
 	for (int i = 0; i < 10000; i++)
 	{
-		swap(rand()%count, rand()%count);
+		swap(rand()%(count-1), rand()%(count - 1));
 	}
 }
 
 void Deck::swap(int a, int b)
 {
 	if (a == b)return;
-	Node **ptrchange1 = &Head, **ptrchange2 = &Head;
+	Node *ptrchange1 = Head, *ptrchange2 = Head;
 
 	for (int i = 0; i < a; i++)
 	{
-		ptrchange1 = (*ptrchange1)->getNextAddr();
+		ptrchange1 = ptrchange1->getNext();
 	}
 	for (int i = 0; i < b; i++)
 	{
-		ptrchange2 = (*ptrchange2)->getNextAddr();
+		ptrchange2 = ptrchange2->getNext();
 	}
 
-	Node* tempnext = (*ptrchange1)->getNext();
+	Card* swaptemp = ptrchange1->getValue();
+	ptrchange1->setValue(ptrchange2->getValue());
+	ptrchange2->setValue(swaptemp);
 
-	(*ptrchange1)->setNext((*ptrchange2)->getNext());
-	(*ptrchange2)->setNext(tempnext);
-
-	tempnext = *ptrchange1;
-	*ptrchange1 = *ptrchange2;
-	*ptrchange2 = tempnext;
 }
 
 void Deck::Add(Card* addCard)

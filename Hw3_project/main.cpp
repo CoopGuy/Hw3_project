@@ -15,6 +15,7 @@ int CompareResult(Player& p1, Player& p2)
 
 int main()
 {
+	srand(time(NULL));
 	Player Human(Player::type::user), Computer(Player::type::ai);
 	while (Human.HasCards() && Computer.HasCards())
 	{
@@ -26,18 +27,21 @@ int main()
 
 		switch (winner)
 		{
-		case 1: // human wins
+		case 0: // human wins
 			Human.GiveCardsFromPlayer(Computer);
+			std::cout << "Congratulations, you won this round\n";
 			break;
-		case 2: // computer wins
+		case 1: // computer wins
 			Computer.GiveCardsFromPlayer(Human);
+			std::cout << "Better luck next time, you lost this round\n";
 			break;
 		default: // tie
 			Human.ReturnCachedCards();
 			Computer.ReturnCachedCards();
+			std::cout << "This round was a tie\n";
 			break;
 		}
-
+		std::cout << "\n";
 	}
 
 	std::string winner = Human.HasCards() ? "human" : "computer";
