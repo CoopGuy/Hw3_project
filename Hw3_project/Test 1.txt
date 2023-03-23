@@ -1,0 +1,21 @@
+y n n y n n y
+
+This test should run 3 rounds
+r1)
+peek the card
+not stash the card
+
+end round
+
+r2)
+not peek the card
+stash the card and draw a new one
+
+end round
+
+r3)
+not peek a card
+not stash the card
+take a card from the stash
+
+end round
