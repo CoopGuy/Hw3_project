@@ -2,8 +2,9 @@
 
 class Card
 {
+public:
+	enum suits { clubs, diamonds, hearts, spades };
 private:
-	enum suits{ clubs, diamonds, hearts, spades, };
 	int value;
 	suits type;
 public:
