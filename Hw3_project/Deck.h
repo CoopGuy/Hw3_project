@@ -22,6 +22,7 @@ private:
 private:
 	Node* Head;
 	Node* Tail;
+	Card* arr;
 	int count;
 	void swap(int a, int b);
 public:

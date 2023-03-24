@@ -10,6 +10,7 @@ private:
 	suits type;
 public:
 	Card(int val = 1, suits su = clubs) : value(val), type(su) {};
+	Card(Card *a) : value(a->value), type(a->type) {};
 	std::string GetFace();
 	std::string GetSuit();
 	int GetValue();

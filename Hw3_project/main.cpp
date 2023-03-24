@@ -15,7 +15,7 @@ int CompareResult(Player& p1, Player& p2)
 
 int main()
 {
-	srand(time(NULL));
+	srand(1);
 	Player Human(Player::type::user), Computer(Player::type::ai);
 	while (Human.HasCards() && Computer.HasCards())
 	{

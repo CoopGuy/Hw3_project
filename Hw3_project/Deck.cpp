@@ -20,30 +20,38 @@ Deck::Deck()
 		ss << "Deck: Empty deck after init\nFile: " << __FILE__ << "\nLine: " << __LINE__ << "\n";
 		throw std::runtime_error(ss.str());
 	}
-	for (int i = 0; i < 10000; i++)
+
+	for (int i = 0; i < 100000; i++)
 	{
-		swap(rand()%(count-1), rand()%(count - 1));
+		swap(rand()%(count - 1), rand()%(count - 1));
 	}
 }
 
 void Deck::swap(int a, int b)
 {
 	if (a == b)return;
-	Node *ptrchange1 = Head, *ptrchange2 = Head;
-
-	for (int i = 0; i < a; i++)
+	if (a > b)
 	{
-		ptrchange1 = ptrchange1->getNext();
+		int t = a;
+		a = b;
+		b = t;
 	}
-	for (int i = 0; i < b; i++)
-	{
-		ptrchange2 = ptrchange2->getNext();
-	}
+	Node** ptrchange1 = &Head, ** ptrchange2 = &Head;
 
-	Card* swaptemp = ptrchange1->getValue();
-	ptrchange1->setValue(ptrchange2->getValue());
-	ptrchange2->setValue(swaptemp);
+	for (int i = 0; i < a; i++) ptrchange1 = (*ptrchange1)->getNextAddr();
+	for (int i = 0; i < b; i++) ptrchange2 = (*ptrchange2)->getNextAddr();
 
+
+	Node* nextof2 = (*ptrchange2)->getNext();
+	(*ptrchange2)->setNext((*ptrchange1)->getNext());
+
+	Node* refto2 = *ptrchange2;
+	(*ptrchange1)->setNext(nextof2);
+
+	if (refto2 == refto2->getNext())refto2->setNext(*ptrchange1);
+	else *ptrchange2 = *ptrchange1;
+
+	*ptrchange1 = refto2;
 }
 
 void Deck::Add(Card* addCard)
