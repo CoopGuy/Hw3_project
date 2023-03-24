@@ -41,11 +41,11 @@ void Deck::swap(int a, int b)
 	for (int i = 0; i < a; i++) ptrchange1 = (*ptrchange1)->getNextAddr();
 	for (int i = 0; i < b; i++) ptrchange2 = (*ptrchange2)->getNextAddr();
 
-
+	Node* nextof1 = (*ptrchange1)->getNext();
 	Node* nextof2 = (*ptrchange2)->getNext();
-	(*ptrchange2)->setNext((*ptrchange1)->getNext());
-
 	Node* refto2 = *ptrchange2;
+
+	(*ptrchange2)->setNext(nextof1);
 	(*ptrchange1)->setNext(nextof2);
 
 	if (refto2 == refto2->getNext())refto2->setNext(*ptrchange1);
